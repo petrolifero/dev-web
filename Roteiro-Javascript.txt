@@ -1,0 +1,25 @@
+﻿
+// https://stackoverflow.com/questions/5657292/why-is-false-used-after-this-simple-addeventlistener-function
+
+// ENTENDENDO O VALOR FALSE NA DEFINIÇÃO DO LISTENER
+// =================================================
+// Se definirmos um painel e dentro deste painel se definirmos um botão, então se clicarmos
+// no botão estaremos clicando ao mesmo tempo no painel e no botão. Se o painel e o botão
+// tiverem listeners configurados para click, qual listener será executado primeiro? O do
+// painel ou o do botão?
+
+//     1|   |4
+// -----|---|-----  Painel
+//      |   |
+//    --|---|----   Botão
+//     2|   |3
+
+// Usando false em ambos os listeners, primeiro será executado o listener do botão (3) e depois o
+// listener do painel (4). Se ambos os listeners estiverem usando true, primeiro será executado o
+// listener do painel (1) e depois o listener do botão (2). Se o listener do painel for false e o
+// listener do botão for true, primeiro será executado o listener do botão (2) e depois o do
+// painel (4). Então esse parâmetro boleano só faz sentido se tivermos dois elementos, um dentro
+// do outro, para os quais existem listeners configurados. Este parâmetro irá configurar a ordem
+// de execução dos listeners.
+
+// ---------------------------------------------------------------------------------------------------------------------
