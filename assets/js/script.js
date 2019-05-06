@@ -3,23 +3,48 @@ $(function () {
 
    $('[data-toggle="popover"]').popover();
 
-   // document.querySelector("#nome").addEventListener("blur", function(e) { validaCamposFunction(e) }, false);
-   document.querySelector("#id-form").addEventListener("submit", function(e) { validaCamposFunction(e) }, false);
-   alert("Passou 1");
+   document.querySelector("#id-form").addEventListener("submit", validaCamposFunction, false);
 
    function validaCamposFunction(e) {
       e.preventDefault();
       let nomeValido = validaNomeFunction();
       let sexoValido = validaSexoFunction();
+      let passeioValido = validaPasseioFunction();
+      let excursaoValido = validaExcursaoFunction();
 
-      alert("validaCampos");
-
-      if(nomeValido && sexoValido) {
-         alert("Ok!");
+      if(nomeValido && sexoValido && passeioValido && excursaoValido) {
       }
       else {
-         alert('Deu erro!');
       }
+   }
+
+   function validaPasseioFunction() {
+ 	let passeio=document.querySelector("#passeio1");
+	let passeioFeedback=document.querySelector("#feedkback-passeio");
+	let indice=passeio.selectedIndex;
+      if(indice === 1) {
+         passeio.classList.add("is-valid");
+         passeio.classList.remove("is-invalid");
+
+         passeioFeedback.classList.add("d-nome");
+         passeioFeedback.classList.remove("d-block");
+
+         return true;
+      }
+      else {
+	 passeio.classList.add("is-invalid");
+         passeio.classList.remove("is-valid");
+
+         passeioFeedback.classList.add("d-block");
+         passeioFeedback.classList.remove("d-none");
+
+         return false;
+      
+      }
+   }
+
+   function validaExcursaoFunction() {
+         return true;
    }
 
    function validaSexoFunction() {
@@ -30,7 +55,6 @@ $(function () {
 
       let botoes = document.querySelectorAll("input[name='sexo']:checked");
       let valor = botoes.length > 0 ? botoes[0].value : null;
-      alert("validaSexo");
 
       if(valor) {
          sexo_masc.classList.add("is-valid");
@@ -58,7 +82,6 @@ $(function () {
 
    function validaNomeFunction() {
       let nome = document.querySelector("#nome");
-      alert("validaNome");
 
       if(nome.value === '') {
          nome.classList.add("is-invalid");
